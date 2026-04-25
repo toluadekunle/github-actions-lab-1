@@ -3,6 +3,9 @@ name: Hello Workflow
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
   say-hello:
@@ -21,3 +24,6 @@ jobs:
           echo "Hostname:         $(hostname)"
           echo "Working dir:      $(pwd)"
           echo "Current UTC time: $(date -u)"
+
+      - name: Show which event triggered this run
+        run: echo "This workflow was triggered by: ${{ github.event_name }}"
